@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "reels-transcript"
+version = "0.0.1"
+description = "Reels videolarının açıklamasını çeken proje"
+authors = ["A. Emir Öztürk, M. Salih Bindak"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.3.2"
+instaloader = "^4.14"
+moviepy = "^1.0.3"
+openai-whisper = "20240930"
+ffmpeg = "^1.4"
+google-api-python-client = "^2.154.0"
+google-auth-httplib2 = "^0.2.0"
+google-auth-oauthlib = "^1.2.1"
+googletrans = "4.0.0-rc1"
+python-dotenv = "^1.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+app = "app:main"
