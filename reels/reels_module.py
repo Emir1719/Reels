@@ -42,3 +42,7 @@ def get_transcript_with_turkish():
             return jsonify({"message": "Bu reelsin metnine erişilemedi", "data": None}), 400
     except ValueError as e:
         return jsonify({"message": e, "data": None}), 400
+
+@reels.route("/hello", methods=["GET"])
+def hello():
+    return jsonify({"message": "Hello World!"}), 200
