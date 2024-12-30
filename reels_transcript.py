@@ -1,5 +1,6 @@
 import os
 import shutil
+from flask import json
 import instaloader
 from moviepy.editor import VideoFileClip
 import whisper
@@ -8,16 +9,18 @@ from google.oauth2 import service_account
 from googleapiclient.http import MediaFileUpload
 import os
 
-FILE = os.getenv("FILE")
-
 # Google Drive için ayarlar
+FILE = os.getenv("FILE")
 SCOPES = ['https://www.googleapis.com/auth/drive']
-SERVICE_ACCOUNT_FILE = 'info.json'
-PARENT_FOLDER_ID = "1-jP-a4ysFjbuu3zHjQi5bB-PihH5r-f_"
+PARENT_FOLDER_ID = os.getenv("PARENT_FOLDER_ID")
 
 class ReelsTranscript:
     def authenticate(self):
-        creds = service_account.Credentials.from_service_account_file(FILE, scopes=SCOPES)
+        # JSON içeriğini FILE değişkeninden al
+        service_account_info = json.loads(os.getenv("FILE"))  # Ortam değişkeninden JSON içeriği okunuyor
+
+        # JSON içeriğini kullanarak kimlik bilgilerini oluştur
+        creds = service_account.Credentials.from_service_account_info(service_account_info, scopes=SCOPES)
         return creds
 
     def upload_file(self, file_path, file_name):
