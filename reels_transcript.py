@@ -5,7 +5,10 @@ from moviepy.editor import VideoFileClip
 import whisper
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
-from googleapiclient.http import MediaFileUpload 
+from googleapiclient.http import MediaFileUpload
+import os
+
+FILE = os.getenv("FILE")
 
 # Google Drive için ayarlar
 SCOPES = ['https://www.googleapis.com/auth/drive']
@@ -14,7 +17,7 @@ PARENT_FOLDER_ID = "1-jP-a4ysFjbuu3zHjQi5bB-PihH5r-f_"
 
 class ReelsTranscript:
     def authenticate(self):
-        creds = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+        creds = service_account.Credentials.from_service_account_file(FILE, scopes=SCOPES)
         return creds
 
     def upload_file(self, file_path, file_name):

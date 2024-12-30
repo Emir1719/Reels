@@ -1,5 +1,8 @@
 from flask import Flask
 from reels.reels_module import reels
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
